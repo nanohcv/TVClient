@@ -1,0 +1,151 @@
+﻿<Page
+    x:Class="TVClient.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TVClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+
+    <Grid Background="#050035">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Mobile">
+                    <VisualState.StateTriggers>
+                        <local:DeviceTypeAdaptiveTrigger PlatformType="Mobile" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="col0.Width" Value="*" />
+                        <Setter Target="col1.Width" Value="0" />
+                        <Setter Target="col2.Width" Value="0" />
+                        <Setter Target="gridProfiles.(Grid.Row)" Value="8" />
+                        <Setter Target="gridProfiles.(Grid.Column)" Value="0" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="wideView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="col0.Width" Value="450" />
+                        <Setter Target="col1.Width" Value="450" />
+                        <Setter Target="col2.Width" Value="*" />
+                        <Setter Target="gridProfiles.(Grid.Row)" Value="0" />
+                        <Setter Target="gridProfiles.(Grid.Column)" Value="1" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="narrowView">
+                    <VisualState.Setters>
+                        <Setter Target="col0.Width" Value="450" />
+                        <Setter Target="col1.Width" Value="0" />
+                        <Setter Target="col2.Width" Value="0" />
+                        <Setter Target="gridProfiles.(Grid.Row)" Value="8" />
+                        <Setter Target="gridProfiles.(Grid.Column)" Value="0" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <ScrollViewer>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition x:Name="col0" Width="450" />
+                    <ColumnDefinition x:Name="col1" Width="450" />
+                    <ColumnDefinition x:Name="col2" Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="20,0,0,0" x:Uid="SettingsPageGeneralSettingsTextBox" FontSize="25" Text="Allgemeine Einstellungen" />
+                    <TextBlock Grid.Row="1" Margin="20,10,0,0" x:Uid="SettingsPageLokalSettingsTextBlock" Text="Einstellungen lokal speichern" FontSize="20" />
+                    <ToggleSwitch Grid.Row="2" Margin="20,0,0,0" IsOn="{Binding Path=LocalSettings, Mode=TwoWay}" FontSize="20" />
+                </Grid>
+                <Rectangle Grid.Row="1" Grid.Column="0" Height="2" Margin="20,20,20,20" Fill="White" />
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="20,0,0,0" x:Uid="SettingsPageNetworkSettingsTextBox" FontSize="25" Text="Netzwerk Einstellungen" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="50" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBox Grid.Row="0" Grid.Column="0" x:Uid="SettingsPageLanAddressTextBox" Text="{Binding Path=Settings.LanAddress, Mode=TwoWay}" Margin="20,20,10,0" Header="LAN Adresse:" />
+                        <TextBox Grid.Row="0" Grid.Column="1" x:Uid="SettingsPageLanPortTextBox" Text="{Binding Path=Settings.LanPort, Mode=TwoWay}" InputScope="Digits" Margin="10,20,10,0" Header="LAN Port:"/>
+                        <Button Grid.Row="0" Grid.Column="2" Command="{Binding Path=SearchRSCommand}" Height="32" FontFamily="Segoe MDL2 Assets" Content="" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+                        <TextBox Grid.Row="1" Grid.Column="0" x:Uid="SettingsPageWanAddressTextBox" Text="{Binding Path=Settings.WanAddress, Mode=TwoWay}" Margin="20,10,10,0" Header="Wan Adresse:" />
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Uid="SettingsPageWanPortTextBox" Text="{Binding Path=Settings.WanPort, Mode=TwoWay}" InputScope="Digits" Margin="10,10,10,0" Header="Wan Port:" />
+                        <TextBox Grid.Row="2" x:Uid="SettingsPageUserNameTextBox" Margin="20,20,10,0" Text="{Binding Path=Settings.User, Mode=TwoWay}" Header="Benutzername:" />
+                        <PasswordBox Grid.Row="3" x:Uid="SettingsPagePasswordBox" Margin="20,10,10,0" Password="{Binding Path=Settings.Password, Mode=TwoWay}" Header="Passwort:" />
+                    </Grid>
+                    
+                </Grid>
+                <Rectangle Grid.Row="3" Grid.Column="0" Height="2" Margin="20,20,20,20" Fill="White" />
+                <Grid Grid.Row="4" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="20,0,0,0" x:Uid="SettingsPageWolSettingsTextBlock" FontSize="25" Text="WOL Einstellungen" />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="150" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Uid="SettingsPageMacTextBox" Text="{Binding Path=Settings.MAC_Lan, Mode=TwoWay}" Margin="20,20,10,0" Header="MAC:" />
+                        <TextBox Grid.Column="1" x:Uid="SettingsPageStartTimeTextBox" Text="{Binding Path=Settings.StartupTime, Mode=TwoWay}" InputScope="Number"  Margin="10,20,20,0" Header="Startup time(s):" />
+                    </Grid>
+                </Grid>
+                <Rectangle Grid.Row="5" Grid.Column="0" Height="2" Margin="20,20,20,20" Fill="White" />
+                <Button Grid.Row="6" x:Uid="SettingsPageCheckSettingsButton" Command="{Binding Path=CheckSettingsCommand}" Margin="20,0,20,0" Content="Einstellungen überprüfen" HorizontalAlignment="Right" />
+                <Rectangle Grid.Row="7" Grid.Column="0" Height="2" Margin="20,20,20,20" Fill="White" />
+                <Grid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" x:Name="gridProfiles" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Margin="20,0,0,0" x:Uid="SettingsPageStreamingProfilesTextBox" FontSize="25" Text="Streaming-Profile" />
+                    <ComboBox Grid.Row="1" x:Uid="SettingsPageLanProfileComboBox" ItemsSource="{Binding Path=Profiles}" SelectedItem="{Binding Path=Settings.ProfileLan, Mode=TwoWay}" IsEnabled="{Binding Path=ProfilesSet}" Margin="20,20,20,0" HorizontalAlignment="Stretch"  Header="Lan Streaming-Profil" />
+                    <ComboBox Grid.Row="2" x:Uid="SettingsPageWanProfileComboBox" ItemsSource="{Binding Path=Profiles}" SelectedItem="{Binding Path=Settings.ProfileWan, Mode=TwoWay}" IsEnabled="{Binding Path=ProfilesSet}" Margin="20,20,20,0" HorizontalAlignment="Stretch"  Header="Wan Streaming-Profil" />
+                    <ComboBox Grid.Row="3" x:Uid="SettingsPageRadioProfileComboBox" ItemsSource="{Binding Path=Profiles}" SelectedItem="{Binding Path=Settings.ProfileAudio, Mode=TwoWay}" IsEnabled="{Binding Path=ProfilesSet}" Margin="20,20,20,0" HorizontalAlignment="Stretch"  Header="Radio Streaming-Profil" />
+                    <!--<Rectangle Grid.Row="4" Grid.Column="0" Height="2" Margin="20,20,20,20" Fill="White" />
+                    <Button Grid.Row="5" x:Uid="SettingsPageSaveButton" Margin="20,0,20,0" Command="{Binding Path=SaveSettingsCommand}" Content="Speichern" IsEnabled="{Binding Path=ProfilesSet}" HorizontalAlignment="Right" />-->
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

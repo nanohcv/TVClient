@@ -1,0 +1,140 @@
+﻿<Page
+    x:Class="TVClient.TimerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TVClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#050035">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="450" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" x:Uid="TPNewTimerTextBlock" Text="New Timer" FontSize="30" FontWeight="Bold" Margin="10,10,10,10" />
+            <Rectangle Grid.Row="1" Fill="White" Height="2" Margin="10,10,10,10" />
+            <ScrollViewer Grid.Row="2" Margin="10,10,10,10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MaxWidth="450" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Row="0" Grid.Column="0" Visibility="{Binding Path=ChannelsVisible}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="TPRootTextBlock" Text="Root:" Margin="10,10,0,10" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" x:Uid="TPChGroupTextBlock" Text="Channel group:" Margin="10,10,0,10" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" x:Uid="TPChannelTextBlock" Text="Channel:" Margin="10,10,0,10" />
+                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="rootComboBox" ItemsSource="{Binding Path=ChannelList}" SelectedItem="{Binding Path=SelectedChannelRoot, Mode=TwoWay}" Margin="0,5,10,5" HorizontalAlignment="Stretch"  />
+                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="groupComboBox" ItemsSource="{Binding Path=ChannelGroups}" SelectedItem="{Binding Path=SelectedChannelGroup, Mode=TwoWay}" Margin="0,5,10,5" HorizontalAlignment="Stretch"  />
+                        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="channelComboBox" ItemsSource="{Binding Path=Channels}" SelectedItem="{Binding Path=SelectedChannel, Mode=TwoWay}" Margin="0,5,10,5" HorizontalAlignment="Stretch"  />
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="TPActivatedTextBlock" Text="Aktiviert:" Margin="10,10,0,10" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" x:Uid="TPNameTextBlock" Text="Name:" Margin="10,10,0,10" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" x:Uid="TPSerieTextBlock" Text="Serie:" Margin="10,10,0,10" />
+                        <CheckBox Grid.Row="0" Grid.Column="1" x:Name="ActivatedCheckBox" IsChecked="{Binding Path=Timer.Enabled, Mode=TwoWay}" Margin="0,5,10,5" />
+                        <TextBox Grid.Row="1" Grid.Column="1" x:Name="NameTextBox" Text="{Binding Path=Timer.Name, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+                        <TextBox Grid.Row="2" Grid.Column="1" x:Name="serieTextBox" Text="{Binding Path=Timer.Series, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+                        <TextBlock Grid.Row="3" Grid.Column="0" x:Uid="TPafterRecordActionTextBlock" Text="Nach Aufnahme:" Margin="10,10,0,10" />
+                        <ComboBox Grid.Row="3" Grid.Column="1" x:Name="actionComboBox" ItemsSource="{Binding Path=TimerActions}" SelectedIndex="{Binding Path=Timer.Action, Mode=TwoWay}" Margin="0,5,10,5" HorizontalAlignment="Stretch" />
+                    </Grid>
+                    <Grid Grid.Row="2" Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="TPStartTextBlock" Text="Start:" Margin="10,10,0,10" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" x:Uid="TPStopTextBlock" Text="Stopp:" Margin="10,10,0,10" />
+                        <TextBlock Grid.Row="5" Grid.Column="0" x:Uid="TPPreTextBlock" Text="Vorlauf:" Margin="10,10,0,10" />
+                        <TextBlock Grid.Row="6" Grid.Column="0" x:Uid="TPAfterTextBlock" Text="Nachlauf:" Margin="10,10,0,10" />
+                        <DatePicker Grid.Row="0" Grid.Column="1" x:Name="startDatePicker" Date="{Binding Path=Timer.Start, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+                        <TimePicker Grid.Row="1" Grid.Column="1" x:Name="startTimePicker" Time="{Binding Path=Timer.StartTime, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+                        <DatePicker Grid.Row="2" Grid.Column="1" x:Name="stopDatePicker" Date="{Binding Path=Timer.Stop, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+                        <TimePicker Grid.Row="3" Grid.Column="1" x:Name="stopTimePicker" Time="{Binding Path=Timer.StopTime, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+                        <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="10,10,10,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" x:Uid="TPMoTextBlock" Text="Mo" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" x:Uid="TPDiTextBlock" Text="Di" />
+                            <TextBlock Grid.Row="0" Grid.Column="2" x:Uid="TPMiTextBlock" Text="Mi" />
+                            <TextBlock Grid.Row="0" Grid.Column="3" x:Uid="TPDoTextBlock" Text="Do" />
+                            <TextBlock Grid.Row="0" Grid.Column="4" x:Uid="TPFrTextBlock" Text="Fr" />
+                            <TextBlock Grid.Row="0" Grid.Column="5" x:Uid="TPSaTextBlock" Text="Sa" />
+                            <TextBlock Grid.Row="0" Grid.Column="6" x:Uid="TPSoTextBlock" Text="So" />
+                            <CheckBox Grid.Row="1" Grid.Column="0" x:Name="MoCheckBox" IsChecked="{Binding Path=Timer.Days[0], Mode=TwoWay}" />
+                            <CheckBox Grid.Row="1" Grid.Column="1" x:Name="DiCheckBox" IsChecked="{Binding Path=Timer.Days[1], Mode=TwoWay}" />
+                            <CheckBox Grid.Row="1" Grid.Column="2" x:Name="MiCheckBox" IsChecked="{Binding Path=Timer.Days[2], Mode=TwoWay}" />
+                            <CheckBox Grid.Row="1" Grid.Column="3" x:Name="DoCheckBox" IsChecked="{Binding Path=Timer.Days[3], Mode=TwoWay}" />
+                            <CheckBox Grid.Row="1" Grid.Column="4" x:Name="FrCheckBox" IsChecked="{Binding Path=Timer.Days[4], Mode=TwoWay}" />
+                            <CheckBox Grid.Row="1" Grid.Column="5" x:Name="SaCheckBox" IsChecked="{Binding Path=Timer.Days[5], Mode=TwoWay}" />
+                            <CheckBox Grid.Row="1" Grid.Column="6" x:Name="SoCheckBox" IsChecked="{Binding Path=Timer.Days[6], Mode=TwoWay}" />
+                        </Grid>
+                        <TextBox Grid.Row="5" Grid.Column="1" x:Name="preTextBox" Text="{Binding Path=Timer.PreRoll, Mode=TwoWay}" TextAlignment="Right" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+                        <TextBox Grid.Row="6" Grid.Column="1" x:Name="afterTextBox" Text="{Binding Path=Timer.PostRoll, Mode=TwoWay}" TextAlignment="Right" HorizontalAlignment="Stretch" Margin="0,5,10,5" />
+
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+            <Rectangle Grid.Row="3" Fill="White" Height="2" Margin="10,10,10,10" />
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" x:Name="saveButton" x:Uid="TPSaveButton" HorizontalAlignment="Stretch" Margin="10,10,10,10" Content="Save" Click="saveButton_Click" />
+                <Button Grid.Column="1" x:Name="cancelButton" x:Uid="TPCancelButton" HorizontalAlignment="Stretch" Margin="10,10,10,10" Content="Cancel" Click="cancelButton_Click" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

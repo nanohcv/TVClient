@@ -1,0 +1,55 @@
+﻿<UserControl
+    x:Class="TVClient.EPGSearchResultItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TVClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Margin="0,10,0,20">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter Target="col1.Width" Value="200" />
+                        <Setter Target="col2.Width" Value="*" />
+                        <Setter Target="TitleTextBlock.(Grid.Row)" Value="0" />
+                        <Setter Target="TitleTextBlock.(Grid.Column)" Value="1" />
+                        <Setter Target="TitleTextBlock.Margin" Value="20,0,0,0" />
+                        <Setter Target="EventTextBlock.(Grid.Row)" Value="1" />
+                        <Setter Target="EventTextBlock.(Grid.Column)" Value="1" />
+                        <Setter Target="EventTextBlock.Margin" Value="20,0,0,0" />
+                        <Setter Target="DescrTextBlock.(Grid.Row)" Value="2" />
+                        <Setter Target="DescrTextBlock.(Grid.Column)" Value="1" />
+                        <Setter Target="DescrTextBlock.Margin" Value="20,0,0,0" />
+                        <Setter Target="RecButton.(Grid.Row)" Value="3" />
+                        <Setter Target="RecButton.(Grid.Column)" Value="1" />
+                        <Setter Target="RecButton.Margin" Value="20,20,0,0" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="col1" Width="*" />
+            <ColumnDefinition x:Name="col2" Width="0" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=ChannelName}" FontWeight="Bold" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=Time}" />
+        <TextBlock x:Name="TitleTextBlock"  Grid.Row="2" Grid.Column="0" Text="{Binding Path=Title}" FontWeight="Bold" />
+        <TextBlock x:Name="EventTextBlock" Grid.Row="3" Grid.Column="0" Text="{Binding Path=Event}" />
+        <TextBlock x:Name="DescrTextBlock" Grid.Row="4" Grid.Column="0" Text="{Binding Path=Description}" TextWrapping="Wrap" />
+        <Button x:Name="RecButton" Grid.Row="5" Grid.Column="0" x:Uid="EPGSearchPage_RecButton" Content="Record" Click="Button_Click" BorderBrush="Red" />
+    </Grid>
+</UserControl>

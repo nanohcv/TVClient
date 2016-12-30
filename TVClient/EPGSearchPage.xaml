@@ -1,0 +1,98 @@
+﻿<Page
+    x:Class="TVClient.EPGSearchPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TVClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#050035">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="Normal">
+                    <VisualState.Setters>
+                        <Setter Target="Result_Grid.Visibility" Value="Visible" />
+                        <Setter Target="SearchResultColumn.Width" Value="*" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="900"></AdaptiveTrigger>
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="SearchParameterColumn" Width="*" MaxWidth="450" />
+            <ColumnDefinition x:Name="SearchResultColumn" Width="0" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ScrollViewer x:Name="SearchScrollViewer" Grid.Row="0" Grid.Column="0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBox Grid.Row="0" x:Uid="EPGSearchPage_SearchTextBox" Header="Search:" Text="{Binding Path=SearchText, Mode=TwoWay}" Margin="10,10,10,10" />
+                <Rectangle Grid.Row="1" Fill="White" Height="2" Margin="10,10,10,10" />
+                <TextBlock Grid.Row="2" x:Uid="EPGSearchPage_SearchOptionsTextBlock" Text="Search options:" Margin="10,10,10,10" />
+                <RelativePanel Grid.Row="3" Margin="10,10,10,10">
+                    <CheckBox x:Uid="EPGSearchPage_TitleCheckBox" Content="Title" Name="TitleCheckBox" IsChecked="{Binding Path=TitleChecked, Mode=TwoWay}" Margin="0,0,10,0" />
+                    <CheckBox x:Uid="EPGSearchPage_InfoCheckBox" Content="Info" Name="InfoCheckBox" IsChecked="{Binding Path=InfoChecked, Mode=TwoWay}" Margin="0,0,10,0" RelativePanel.RightOf="TitleCheckBox" />
+                    <CheckBox x:Uid="EPGSearchPage_DescriptionCheckBox" Content="Description" IsChecked="{Binding Path=DescChecked, Mode=TwoWay}" Name="DescriptionCheckBox" RelativePanel.RightOf="InfoCheckBox"/>
+                </RelativePanel>
+                <RelativePanel Grid.Row="4" Margin="10,10,10,10">
+                    <CheckBox x:Uid="EPGSearchPage_CaseCheckBox" Content="Case sensitive" Name="CaseCheckBox" IsChecked="{Binding Path=CaseChecked, Mode=TwoWay}" Margin="0,0,10,0" />
+                    <CheckBox x:Uid="EPGSearchPage_RegExCheckBox" Content="Regular expression" Name="RegExCheckBox" IsChecked="{Binding Path=RegExChecked, Mode=TwoWay}" RelativePanel.RightOf="CaseCheckBox" />
+                </RelativePanel>
+                <Rectangle Grid.Row="5" Fill="White" Height="2" Margin="10,10,10,10" />
+                <RelativePanel Grid.Row="6" Margin="10,10,10,10">
+                    <CheckBox x:Uid="EPGSearchPage_DateCheckBox" Name="DateCheckBox" IsChecked="{Binding Path=DateChecked, Mode=TwoWay}" Content="Period:" />
+                    <TextBlock Name="StartTextBlock" Text="Start:" RelativePanel.Below="DateCheckBox" Margin="0,10,0,0" />
+                    <DatePicker Name="StartDatePicker" RelativePanel.Below="StartTextBlock" IsEnabled="{Binding Path=IsChecked, ElementName=DateCheckBox}" Date="{Binding Path=StartDate, Mode=TwoWay}" />
+                    <TimePicker Name="StartTimePicker" RelativePanel.Below="StartDatePicker" Width="{Binding Path=ActualWidth, ElementName=StartDatePicker}" IsEnabled="{Binding Path=IsChecked, ElementName=DateCheckBox}" Time="{Binding Path=StartTime, Mode=TwoWay}" />
+                    <TextBlock Name="StopTextBlock" Text="Stop:" RelativePanel.Below="StartTimePicker" Margin="0,10,0,0" />
+                    <DatePicker Name="StopDatePicker" RelativePanel.Below="StopTextBlock" IsEnabled="{Binding Path=IsChecked, ElementName=DateCheckBox}" Date="{Binding Path=StopDate, Mode=TwoWay}" />
+                    <TimePicker Name="StopTimePicker" RelativePanel.Below="StopDatePicker" Width="{Binding Path=ActualWidth, ElementName=StopDatePicker}" IsEnabled="{Binding Path=IsChecked, ElementName=DateCheckBox}" Time="{Binding Path=StopTime, Mode=TwoWay}" />
+                </RelativePanel>
+                <Rectangle Grid.Row="7" Fill="White" Height="2" Margin="10,10,10,10" />
+                <RelativePanel Grid.Row="8" Margin="10,10,10,10" >
+                    <CheckBox x:Uid="EPGSearchPage_ChannelCheckBox" Name="ChannelCheckBox" Content="Channel:" IsChecked="{Binding Path=ChannelChecked, Mode=TwoWay}" />
+                    <ComboBox Name="ChannelRootComboBox" RelativePanel.Below="ChannelCheckBox" Width="300" IsEnabled="{Binding Path=IsChecked, ElementName=ChannelCheckBox}" ItemsSource="{Binding Path=ChannelList}" SelectedItem="{Binding Path=SelectedChannelList, Mode=TwoWay}" />
+                    <ComboBox Name="ChannelGroupComboBox" RelativePanel.Below="ChannelRootComboBox" Width="300" IsEnabled="{Binding Path=IsChecked, ElementName=ChannelCheckBox}" ItemsSource="{Binding Path=ChannelGroups}" SelectedItem="{Binding Path=SelectedChannelGroup, Mode=TwoWay}" />
+                    <ComboBox Name="ChannelComboBox" RelativePanel.Below="ChannelGroupComboBox" Width="300" IsEnabled="{Binding Path=IsChecked, ElementName=ChannelCheckBox}" ItemsSource="{Binding Path=Channels}" SelectedItem="{Binding Path=SelectedChannel, Mode=TwoWay}" />
+                </RelativePanel>
+                <Rectangle Grid.Row="9" Fill="White" Height="2" Margin="10,10,10,10" />
+                <Button Grid.Row="10" x:Uid="EPGSearchPage_SearchButton" Name="SearchButton" Content="Search" HorizontalAlignment="Left" Margin="10,10,10,10" Click="{x:Bind ViewModel.OnSearchButtonClick}" />
+            </Grid>
+        </ScrollViewer>
+        <Grid x:Name="Result_Grid" Grid.Row="0" Grid.Column="1" Margin="10,10,10,10" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" x:Uid="EPGSearchPage_ResultTextBlock" Text="Result" FontSize="40" FontWeight="Bold" />
+            <Rectangle Grid.Row="1" Height="2" Fill="White" Margin="0,10,0,10" />
+            <ScrollViewer Grid.Row="2">
+                <ListBox x:Name="EPGSearchListBox" Background="Transparent" ItemsSource="{Binding Path=EPGSearchResult}" SelectionChanged="EPGSearchListBox_SelectionChanged" >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <local:EPGSearchResultItem />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

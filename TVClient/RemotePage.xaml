@@ -1,0 +1,150 @@
+﻿<Page
+    x:Class="TVClient.RemotePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TVClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+
+    <Grid Background="#050035">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="450" Width="*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Row="0" Grid.Column="0" x:Name="computerComboBox" HorizontalAlignment="Stretch" Margin="5,5,5,5" />
+            <ScrollViewer Grid.Row="1" Grid.Column="0" >
+                <Grid Margin="0,0,10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2*" />
+                        <RowDefinition MaxHeight="70"  Height="*" />
+                        <RowDefinition Height="2*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="ContentPanel1" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Power" Tag="12325" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Red" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="˄" Tag="78" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Blue" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Mute" Tag="25" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="&lt;" Tag="2000" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Blue" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="OK" Tag="73" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Green" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="&gt;" Tag="2100" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Blue" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Menu" Tag="111" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Turquoise" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="˅" Tag="79" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Blue" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Back" Tag="84" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Orange" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="EPG" Tag="8198" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Timeline" Tag="8201" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Teletext" Tag="101" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                    </Grid>
+                    <Grid x:Name="ContentPane2" Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="100" Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Red" Tag="74" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Red" Background="#7FFF0000" Margin="5,5,5,5" Click="KeyEvent" FontSize="20" />
+                        <Button Content="Green" Tag="75" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Lime" Background="#7F00FF00" Margin="5,5,5,5" Click="KeyEvent" FontSize="20"/>
+                        <Button Content="Yellow" Tag="76" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Yellow" Background="#7FFFFF00" Margin="5,5,5,5" Click="KeyEvent" FontSize="20"/>
+                        <Button Content="Blue" Tag="77" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Blue" Background="#7F0000FF" Margin="5,5,5,5" Click="KeyEvent" FontSize="20"/>
+                    </Grid>
+                    <Grid x:Name="ContentPanel3" Grid.Row="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition MaxHeight="80" Height="*"/>
+                            <RowDefinition MaxHeight="80" Height="*"/>
+                            <RowDefinition MaxHeight="80" Height="*"/>
+                            <RowDefinition MaxHeight="80" Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="1" Tag="41" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="2" Tag="42" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="3" Tag="43" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="4" Tag="44" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="5" Tag="45" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="6" Tag="46" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="7" Tag="47" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="8" Tag="48" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="9" Tag="49" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Chan -" Tag="8" Grid.Column="0" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="0" Tag="40" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Chan +" Tag="9" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                    </Grid>
+                    <Grid x:Name="Content2Panel1" Grid.Row="3" Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="225" Width="*"/>
+                            <ColumnDefinition MaxWidth="225" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Play" Tag="92" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Green" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="II" Tag="0" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Blue" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Stop" Tag="114" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Orange" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Rec" Tag="34" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Red" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                    </Grid>
+                    <Grid x:Name="Content2Panel2" Grid.Row="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                            <ColumnDefinition MaxWidth="112.5" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="&lt;&lt;" Tag="12305" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="&gt;&gt;" Tag="12304" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="|&lt;&lt;" Tag="112" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="&gt;&gt;|" Tag="113" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+
+                        <Button Content="-10 s" Tag="102" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="+10 s" Tag="103" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="Gray" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Vol -" Tag="27" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Vol +" Tag="26" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                    </Grid>
+                    <Grid x:Name="Content2Panel3" Grid.Row="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                            <ColumnDefinition MaxWidth="150" Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Content="DVD Menu" Tag="8246" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Sub Title" Tag="8247" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+                        <Button Content="Audio" Tag="8248" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" BorderBrush="White" Background="Transparent" Margin="5,5,5,5" Click="KeyEvent"/>
+
+                    </Grid>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

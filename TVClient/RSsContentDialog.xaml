@@ -1,0 +1,23 @@
+﻿<ContentDialog
+    x:Class="TVClient.RSsContentDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TVClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Recording Services"
+    SecondaryButtonText="Cancel"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick" Loaded="ContentDialog_Loaded">   
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="RSsListBox" Visibility="Collapsed" SelectionChanged="RSsListBox_SelectionChanged"  />
+        <ProgressRing x:Name="progressRing" Margin="30,30,30,30" IsActive="True" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            
+        
+    </Grid>
+</ContentDialog>

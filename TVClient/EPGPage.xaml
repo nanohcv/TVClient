@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="TVClient.EPGPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TVClient"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="#050035">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="wideView">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="500" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="btnCol1.Width" Value="100" />
+                        <Setter Target="btnCol2.Width" Value="100" />
+                        <Setter Target="btnCol3.Width" Value="100" />
+                        <Setter Target="btnCol4.Width" Value="*" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="narrowView">
+                    <VisualState.Setters>
+                        <Setter Target="btnCol1.Width" Value="*" />
+                        <Setter Target="btnCol2.Width" Value="*" />
+                        <Setter Target="btnCol3.Width" Value="*" />
+                        <Setter Target="btnCol4.Width" Value="0" />
+                    </VisualState.Setters>
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="btnCol1" Width="100" />
+                <ColumnDefinition x:Name="btnCol2" Width="100" />
+                <ColumnDefinition x:Name="btnCol3" Width="100" />
+                <ColumnDefinition x:Name="btnCol4" Width="*" />
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" x:Name="ChannelRootComboBox" ItemsSource="{Binding Path=ChannelList}" SelectedItem="{Binding Path=SelectedChannelList, Mode=TwoWay}" HorizontalAlignment="Stretch"/>
+            <ComboBox Grid.Column="1" x:Name="ChannelGroupsComboBox" ItemsSource="{Binding Path=ChannelGroups}" SelectedItem="{Binding Path=SelectedChannelGroup, Mode=TwoWay}" HorizontalAlignment="Stretch" />
+            <ComboBox Grid.Column="2" x:Name="DAYcomboBox" ItemsSource="{Binding Path=Days}" SelectedItem="{Binding Path=SelectedDay, Mode=TwoWay}"  HorizontalAlignment="Stretch"  />
+        </Grid>
+        <local:EPGControl Grid.Row="1" DataContext="{Binding Path=EPGParameter}" />
+    </Grid>
+</Page>
